@@ -19,7 +19,7 @@ public class ConexionMysql {
     private static final String IP = "localhost";
     private static final String PUERTO = "3306";
     
-    private static final String URL = "jdbc:mysql://\" + IP +\":\" + PUERTO + \"/\" + BD + \"?useSSL=false&serverTimezone=UTC";
+    private static final String URL = "jdbc:mysql://" + IP +":" + PUERTO + "/" + BD + "?useSSL=false&serverTimezone=UTC";
     
     private Connection conexion;
     
