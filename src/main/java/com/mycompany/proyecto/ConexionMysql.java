@@ -35,6 +35,19 @@ public class ConexionMysql {
         }
         return conexion;
     }
+    
+    public void cerrarConexion(){
+        
+        try{
+            if(conexion !=null && !conexion.isClosed()){
+                conexion.close();
+                System.out.println("Conexion cerrada correctamente");
+                
+            }
+        }catch (SQLException e){
+            System.out.println("ERROR al cerrar la conexion"+e.getMessage());
+        }
+    }
             
     
 }
