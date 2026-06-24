@@ -9,5 +9,10 @@ package com.mycompany.proyecto;
  * @author Usuario
  */
 public class ConexionMysql {
+    private static final String USUARIO = "root";
+    private static final String CONTRASEÑA = "";
+    private static final String BD = "biblioteca";
+    private static final String IP = "localhost";
+    private static final String PUERTO = "3306";
     
 }
