@@ -17,7 +17,7 @@ public class UsuarioDAO {
     
     public void guardarUsuario(String usuario, String contraseña, String nombre, String rol)
     {
-        String consulta = "INSERT INTO usuario(usuario,contraseña,nombre,rol)VALUES(?,?,?,? ";
+        String consulta = "INSERT INTO usuarios(usuario,contraseña,nombre,rol)VALUES(?,?,?,?)";
         
         try{
             ConexionMysql conexion = new ConexionMysql();
