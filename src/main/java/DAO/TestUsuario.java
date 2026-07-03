@@ -13,6 +13,6 @@ public class TestUsuario {
     public static void main(String[] args) {
         UsuarioDAO dao = new UsuarioDAO();
         //dao.guardarUsuario("KristhianM", "12345", "KristhianMontoya", "Admin");
-        dao.consultarUsuarioLimite(10);
+        dao.consultarUsuario();
     }
 }

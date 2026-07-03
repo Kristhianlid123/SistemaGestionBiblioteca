@@ -7,6 +7,7 @@ package DAO;
 import com.mycompany.proyecto.ConexionMysql;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class LectoresDAO {
@@ -41,6 +42,43 @@ public class LectoresDAO {
         } catch (SQLException e) {
 
             System.out.println("ERROR al guardar: " + e.getMessage());
+
+        }
+
+    }
+
+    public void consultarLectorLimite(int limite) {
+
+        String consulta = "SELECT * FROM lectores ORDER BY id_lector DESC LIMIT ?";
+
+        try {
+
+            ConexionMysql conexion = new ConexionMysql();
+            Connection cn = conexion.establecerConexion();
+            PreparedStatement ps = cn.prepareStatement(consulta);
+
+            ps.setInt(1, limite);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                int id = rs.getInt("id_lector");
+                String nombre = rs.getString("nombre");
+                String telefono = rs.getString("telefono");
+                String correo = rs.getString("correo");
+
+                System.out.println("Datos: " + id + " - " + nombre + " - " + telefono + " - " + correo);
+
+            }
+
+            rs.close();
+            ps.close();
+            cn.close();
+
+        } catch (SQLException e) {
+
+            System.out.println("ERROR: " + e.getMessage());
 
         }
 
