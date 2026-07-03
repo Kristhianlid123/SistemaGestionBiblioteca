@@ -11,7 +11,8 @@ package DAO;
 public class TestUsuario {
     
     public static void main(String[] args) {
-        UsuarioDAO insert = new UsuarioDAO();
-        insert.guardarUsuario("KristhianM", "12345", "KristhianMontoya", "Admin");
+        UsuarioDAO dao = new UsuarioDAO();
+        //dao.guardarUsuario("KristhianM", "12345", "KristhianMontoya", "Admin");
+        dao.consultarUsuarioLimite(10);
     }
 }
