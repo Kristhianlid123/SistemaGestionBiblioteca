@@ -8,6 +8,7 @@ import com.mycompany.proyecto.ConexionMysql;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class PrestamoDAO {
@@ -55,4 +56,42 @@ public class PrestamoDAO {
 
     }
 
+    public void consultarPrestamoLimite(int limite) {
+
+        String consulta = "SELECT * FROM prestamos ORDER BY id_prestamo DESC LIMIT ?";
+
+        try {
+
+            ConexionMysql conexion = new ConexionMysql();
+            Connection cn = conexion.establecerConexion();
+            PreparedStatement ps = cn.prepareStatement(consulta);
+
+            ps.setInt(1, limite);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                int idPrestamo = rs.getInt("id_prestamo");
+                int idLector = rs.getInt("id_lector");
+                int idLibro = rs.getInt("id_libro");
+                Date fechaPrestamo = rs.getDate("fecha_prestamo");
+                Date fechaDevolucion = rs.getDate("fecha_devolucion");
+                String estado = rs.getString("estado");
+
+                System.out.println("Datos: " + idPrestamo + " - " + idLector + " - " + idLibro + " - " + fechaPrestamo + " - " + fechaDevolucion + " - " + estado);
+
+            }
+
+            rs.close();
+            ps.close();
+            cn.close();
+
+        } catch (SQLException e) {
+
+            System.out.println("ERROR: " + e.getMessage());
+
+        }
+
+    }
 }

@@ -10,15 +10,10 @@ public class TestPrestamo {
 
     public static void main(String[] args) {
 
-        PrestamoDAO insert = new PrestamoDAO();
+        PrestamoDAO dao = new PrestamoDAO();
 
-        insert.guardarPrestamo(
-                1,
-                1,
-                Date.valueOf("2026-07-02"),
-                Date.valueOf("2026-07-09"),
-                "Prestado"
-        );
+        //dao.guardarPrestamo(1,1,Date.valueOf("2026-07-02"),Date.valueOf("2026-07-09"),"Prestado");
+        dao.consultarPrestamoLimite(10);
 
     }
 
