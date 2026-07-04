@@ -11,9 +11,10 @@ package DAO;
 public class TestLibro {
     
     public static void main(String[] args) {
-        LibroDAO insert = new LibroDAO();
+        LibroDAO dao = new LibroDAO();
         
-        insert.guardarLibro("Cien años de soledad", "Gabriel García Márquez", "Disponible");
+        //dao.guardarLibro("Cien años de soledad", "Gabriel García Márquez", "Disponible");
+        dao.consultarLibroLimite(10);
     }
     
 }

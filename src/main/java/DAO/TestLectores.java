@@ -8,13 +8,15 @@ public class TestLectores {
 
     public static void main(String[] args) {
 
-        LectoresDAO insert = new LectoresDAO();
+        LectoresDAO dao = new LectoresDAO();
 
-        insert.guardarLector(
+        dao.guardarLector(
                 "Juan Pérez",
                 "3001234567",
                 "juan@gmail.com"
         );
+        
+        dao.consultarLectorLimite(10);
 
     }
 
