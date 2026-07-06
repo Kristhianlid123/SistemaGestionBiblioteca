@@ -169,4 +169,44 @@ public class UsuarioDAO {
         }
 
     }
+    
+    public void actualizarUsuario(int id, String usuario, String contraseña, String nombre, String rol) {
+
+        String consulta = "UPDATE usuarios SET usuario = ?, contraseña = ?, nombre = ?, rol = ? WHERE id = ?";
+
+        try {
+
+            ConexionMysql conexion = new ConexionMysql();
+            Connection cn = conexion.establecerConexion();
+            PreparedStatement ps = cn.prepareStatement(consulta);
+
+            ps.setString(1, usuario);
+            ps.setString(2, contraseña);
+            ps.setString(3, nombre);
+            ps.setString(4, rol);
+            ps.setInt(5, id);
+
+            int filasAfectadas = ps.executeUpdate();
+
+            if (filasAfectadas > 0) {
+
+                System.out.println("Registro actualizado: " + nombre);
+
+            } else {
+
+                System.out.println("No se encontró el registro");
+
+            }
+
+            ps.close();
+            cn.close();
+
+        } catch (SQLException e) {
+
+            System.out.println("ERROR: " + e.getMessage());
+            e.printStackTrace();
+
+        }
+
+    }
 }
