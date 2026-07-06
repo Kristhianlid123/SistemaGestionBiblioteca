@@ -10,14 +10,10 @@ public class TestLectores {
 
         LectoresDAO dao = new LectoresDAO();
 
-        dao.guardarLector(
-                "Juan Pérez",
-                "3001234567",
-                "juan@gmail.com"
-        );
+        //dao.guardarLector("Juan Pérez","3001234567","juan@gmail.com");
         
-        dao.consultarLectorLimite(10);
-
+        //dao.consultarLectorLimite(10);
+        dao.buscarLector("ja");
     }
 
 }

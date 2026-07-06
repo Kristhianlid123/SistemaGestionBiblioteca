@@ -83,5 +83,53 @@ public class LectoresDAO {
         }
 
     }
+    
+    public void buscarLector(String nombre) {
+
+        String consulta = "SELECT * FROM lectores WHERE nombre LIKE ?";
+
+        try {
+
+            ConexionMysql conexion = new ConexionMysql();
+            Connection cn = conexion.establecerConexion();
+            PreparedStatement ps = cn.prepareStatement(consulta);
+
+            ps.setString(1, "%" + nombre + "%");
+
+            ResultSet rs = ps.executeQuery();
+
+            boolean encontrado = false;
+
+            while (rs.next()) {
+
+                int idLector = rs.getInt("id_lector");
+                String nombres = rs.getString("nombre");
+                String telefono = rs.getString("telefono");
+                String correo = rs.getString("correo");
+
+                encontrado = true;
+
+                System.out.println(idLector + " - " + nombres + " - " + telefono + " - " + correo);
+
+            }
+
+            if (!encontrado) {
+
+                System.out.println("Registro no encontrado");
+
+            }
+
+            rs.close();
+            ps.close();
+            cn.close();
+
+        } catch (SQLException e) {
+
+            System.out.println("ERROR: " + e.getMessage());
+            e.printStackTrace();
+
+        }
+
+    }
 
 }
