@@ -131,4 +131,40 @@ public class LibroDAO {
         }
 
     }
+    
+    public void eliminarLibro(int id) {
+
+        String consulta = "DELETE FROM libros WHERE id_libro = ?";
+
+        try {
+
+            ConexionMysql conexion = new ConexionMysql();
+            Connection cn = conexion.establecerConexion();
+            PreparedStatement ps = cn.prepareStatement(consulta);
+
+            ps.setInt(1, id);
+
+            int filasAfectadas = ps.executeUpdate();
+
+            if (filasAfectadas > 0) {
+
+                System.out.println("Registro eliminado: " + id);
+
+            } else {
+
+                System.out.println("No se encontró el registro");
+
+            }
+
+            ps.close();
+            cn.close();
+
+        } catch (SQLException e) {
+
+            System.out.println("ERROR: " + e.getMessage());
+            e.printStackTrace();
+
+        }
+
+    }
 }
