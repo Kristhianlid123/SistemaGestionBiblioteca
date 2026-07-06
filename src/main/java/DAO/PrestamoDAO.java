@@ -94,4 +94,54 @@ public class PrestamoDAO {
         }
 
     }
+    
+    public void buscarPrestamo(int idLibro) {
+
+        String consulta = "SELECT * FROM prestamos WHERE id_prestamo = ?";
+
+        try {
+
+            ConexionMysql conexion = new ConexionMysql();
+            Connection cn = conexion.establecerConexion();
+            PreparedStatement ps = cn.prepareStatement(consulta);
+
+            ps.setInt(1, idLibro);
+
+            ResultSet rs = ps.executeQuery();
+
+            boolean encontrado = false;
+
+            while (rs.next()) {
+
+                int idPrestamo = rs.getInt("id_prestamo");
+                int idLector = rs.getInt("id_lector");
+                int libro = rs.getInt("id_libro");
+                Date fechaPrestamo = rs.getDate("fecha_prestamo");
+                Date fechaDevolucion = rs.getDate("fecha_devolucion");
+                String estado = rs.getString("estado");
+
+                encontrado = true;
+
+                System.out.println(idPrestamo + " - " + idLector + " - " + libro + " - " + fechaPrestamo + " - " + fechaDevolucion + " - " + estado);
+
+            }
+
+            if (!encontrado) {
+
+                System.out.println("Registro no encontrado");
+
+            }
+
+            rs.close();
+            ps.close();
+            cn.close();
+
+        } catch (SQLException e) {
+
+            System.out.println("ERROR: " + e.getMessage());
+            e.printStackTrace();
+
+        }
+
+    }
 }

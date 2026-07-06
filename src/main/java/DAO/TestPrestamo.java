@@ -13,8 +13,8 @@ public class TestPrestamo {
         PrestamoDAO dao = new PrestamoDAO();
 
         //dao.guardarPrestamo(1,1,Date.valueOf("2026-07-02"),Date.valueOf("2026-07-09"),"Prestado");
-        dao.consultarPrestamoLimite(10);
-
+        //dao.consultarPrestamoLimite(10);
+        dao.buscarPrestamo(8);
     }
 
 }
