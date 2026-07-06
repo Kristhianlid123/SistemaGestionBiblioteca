@@ -13,7 +13,8 @@ public class TestLectores {
         //dao.guardarLector("Juan Pérez","3001234567","juan@gmail.com");
         
         //dao.consultarLectorLimite(10);
-        dao.buscarLector("ja");
+        //dao.buscarLector("ja");
+        dao.eliminarLector(18);
     }
 
 }
