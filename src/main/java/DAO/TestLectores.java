@@ -14,7 +14,8 @@ public class TestLectores {
         
         //dao.consultarLectorLimite(10);
         //dao.buscarLector("ja");
-        dao.eliminarLector(18);
+        //dao.eliminarLector(18);
+        dao.actualizarLector(2,"Juan Mendez","3001112233","juanM@email.com");
     }
 
 }
