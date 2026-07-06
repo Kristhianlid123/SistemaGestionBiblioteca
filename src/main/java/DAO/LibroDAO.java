@@ -167,4 +167,42 @@ public class LibroDAO {
         }
 
     }
+    public void actualizarLibro(int id, String titulo, String autor, String estado) {
+
+        String consulta = "UPDATE libros SET titulo = ?, autor = ?, estado = ? WHERE id_libro = ?";
+
+        try {
+
+            ConexionMysql conexion = new ConexionMysql();
+            Connection cn = conexion.establecerConexion();
+            PreparedStatement ps = cn.prepareStatement(consulta);
+
+            ps.setString(1, titulo);
+            ps.setString(2, autor);
+            ps.setString(3, estado);
+            ps.setInt(4, id);
+
+            int filasAfectadas = ps.executeUpdate();
+
+            if (filasAfectadas > 0) {
+
+                System.out.println("Registro actualizado: " + titulo);
+
+            } else {
+
+                System.out.println("No se encontró el registro");
+
+            }
+
+            ps.close();
+            cn.close();
+
+        } catch (SQLException e) {
+
+            System.out.println("ERROR: " + e.getMessage());
+            e.printStackTrace();
+
+        }
+
+    }
 }
