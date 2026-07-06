@@ -12,8 +12,7 @@ import java.sql.SQLException;
 
 public class LibroDAO {
 
-    public void guardarLibro(String titulo, String autor, String estado)
-    {
+    public void guardarLibro(String titulo, String autor, String estado) {
 
         String consulta = "INSERT INTO libros(titulo,autor,estado) VALUES (?,?,?)";
 
@@ -47,41 +46,89 @@ public class LibroDAO {
         }
 
     }
-    
+
     public void consultarLibroLimite(int limite) {
 
-    String consulta = "SELECT * FROM libros ORDER BY id_libro DESC LIMIT ?";
+        String consulta = "SELECT * FROM libros ORDER BY id_libro DESC LIMIT ?";
 
-    try {
+        try {
 
-        ConexionMysql conexion = new ConexionMysql();
-        Connection cn = conexion.establecerConexion();
-        PreparedStatement ps = cn.prepareStatement(consulta);
+            ConexionMysql conexion = new ConexionMysql();
+            Connection cn = conexion.establecerConexion();
+            PreparedStatement ps = cn.prepareStatement(consulta);
 
-        ps.setInt(1, limite);
+            ps.setInt(1, limite);
 
-        ResultSet rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
-        while (rs.next()) {
+            while (rs.next()) {
 
-            int id = rs.getInt("id_libro");
-            String titulo = rs.getString("titulo");
-            String autor = rs.getString("autor");
-            String estado = rs.getString("estado");
+                int id = rs.getInt("id_libro");
+                String titulo = rs.getString("titulo");
+                String autor = rs.getString("autor");
+                String estado = rs.getString("estado");
 
-            System.out.println("Datos: " + id + " - " + titulo + " - " + autor + " - " + estado);
+                System.out.println("Datos: " + id + " - " + titulo + " - " + autor + " - " + estado);
+
+            }
+
+            rs.close();
+            ps.close();
+            cn.close();
+
+        } catch (SQLException e) {
+
+            System.out.println("ERROR: " + e.getMessage());
 
         }
 
-        rs.close();
-        ps.close();
-        cn.close();
+    }
+    
+    public void buscarLibro(String titulo) {
 
-    } catch (SQLException e) {
+        String consulta = "SELECT * FROM libros WHERE titulo LIKE ?";
 
-        System.out.println("ERROR: " + e.getMessage());
+        try {
+
+            ConexionMysql conexion = new ConexionMysql();
+            Connection cn = conexion.establecerConexion();
+            PreparedStatement ps = cn.prepareStatement(consulta);
+
+            ps.setString(1, "%" + titulo + "%");
+
+            ResultSet rs = ps.executeQuery();
+
+            boolean encontrado = false;
+
+            while (rs.next()) {
+
+                int idLibro = rs.getInt("id_libro");
+                String titulos = rs.getString("titulo");
+                String autor = rs.getString("autor");
+                String estado = rs.getString("estado");
+
+                encontrado = true;
+
+                System.out.println(idLibro + " - " + titulos + " - " + autor + " - " + estado);
+
+            }
+
+            if (!encontrado) {
+
+                System.out.println("Registro no encontrado");
+
+            }
+
+            rs.close();
+            ps.close();
+            cn.close();
+
+        } catch (SQLException e) {
+
+            System.out.println("ERROR: " + e.getMessage());
+            e.printStackTrace();
+
+        }
 
     }
-
-}
 }

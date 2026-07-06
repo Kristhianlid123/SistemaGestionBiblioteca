@@ -14,7 +14,8 @@ public class TestLibro {
         LibroDAO dao = new LibroDAO();
         
         //dao.guardarLibro("Cien años de soledad", "Gabriel García Márquez", "Disponible");
-        dao.consultarLibroLimite(10);
+        //dao.consultarLibroLimite(10);
+        dao.buscarLibro("da");
     }
     
 }
