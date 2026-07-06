@@ -179,4 +179,45 @@ public class PrestamoDAO {
         }
 
     }
+    
+    public void actualizarPrestamo(int idPrestamo, int idLector, int idLibro, Date fechaPrestamo, Date fechaDevolucion, String estado) {
+
+        String consulta = "UPDATE prestamos SET id_lector = ?, id_libro = ?, fecha_prestamo = ?, fecha_devolucion = ?, estado = ? WHERE id_prestamo = ?";
+
+        try {
+
+            ConexionMysql conexion = new ConexionMysql();
+            Connection cn = conexion.establecerConexion();
+            PreparedStatement ps = cn.prepareStatement(consulta);
+
+            ps.setInt(1, idLector);
+            ps.setInt(2, idLibro);
+            ps.setDate(3, fechaPrestamo);
+            ps.setDate(4, fechaDevolucion);
+            ps.setString(5, estado);
+            ps.setInt(6, idPrestamo);
+
+            int filasAfectadas = ps.executeUpdate();
+
+            if (filasAfectadas > 0) {
+
+                System.out.println("Registro actualizado");
+
+            } else {
+
+                System.out.println("No se encontró el registro");
+
+            }
+
+            ps.close();
+            cn.close();
+
+        } catch (SQLException e) {
+
+            System.out.println("ERROR: " + e.getMessage());
+            e.printStackTrace();
+
+        }
+
+    }
 }

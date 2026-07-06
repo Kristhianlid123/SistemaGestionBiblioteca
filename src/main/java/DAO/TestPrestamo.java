@@ -15,7 +15,8 @@ public class TestPrestamo {
         //dao.guardarPrestamo(1,1,Date.valueOf("2026-07-02"),Date.valueOf("2026-07-09"),"Prestado");
         //dao.consultarPrestamoLimite(10);
         //dao.buscarPrestamo(8);
-        dao.eliminarPrestamo(16);
+        //dao.eliminarPrestamo(16);
+        dao.actualizarPrestamo(4, 2, 4, Date.valueOf("2026-06-20"), Date.valueOf("2026-07-04"), "Devuelto");
     }
 
 }
