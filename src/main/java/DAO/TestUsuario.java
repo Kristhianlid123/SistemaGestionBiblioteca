@@ -14,6 +14,7 @@ public class TestUsuario {
         UsuarioDAO dao = new UsuarioDAO();
         //dao.guardarUsuario("KristhianM", "12345", "KristhianMontoya", "Admin");
         //dao.consultarUsuario();
-        dao.buscarUsuario("ca");
+        //dao.buscarUsuario("ca");
+        dao.eliminarUsuario(2);
     }
 }
